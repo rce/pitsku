@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Ruoka-aika</title>
+    <style>
+      @import 'https://fonts.googleapis.com/css?family=Merriweather';
+
+      body {
+        font-family: 'Merriweather';
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+        max-width: 1170px;
+        line-height: 1.75;
+        text-align: justify;
+        font-size: 20px;
+      }
+
+      header > *:not(h1) {
+        opacity: 0.5;
+      }
+
+      header > * {
+        display: inline-block;
+      }
+
+
+      header {
+        border-bottom: 2px solid #eee;
+      }
+
+
+      footer {
+        border-top: 2px solid #eee;
+      }
+
+      a {
+        text-decoration: none;
+        color: #428bca;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .random, .random a {
+        color: blue;
+        background-color: #def;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Nami nami</h1>
+    </header>
+
+    <article>
+      <button>rand()</button>
+      <ul>
+        <li><a href="http://www.sodexo.fi/taste">localhost</a></li>
+        <li><a href="http://www.ravintolablancco.com/louna-viikko/pitajanmaki/">Blancco</a></li>
+        <li class="nepal"><a href="http://www.meronepal.fi/">Nepal</a></li>
+        <li><a href="http://www.sodexo.fi/valimotie9">Sodexo Valimotie 9</a></li>
+        <li><a href="http://www.sodexo.fi/valimo21">Sodexo Valimo 21</a></li>
+        <li><a href="http://www.smarteat.fi/menu-pitskun-kanttiini/#main">Pitskun kanttiini</a></li>
+        <li><a href="https://www.taitotalo.com/fi/ravintolat/lounaslistat/variantti-viikon-lounaslista/">Variantti</a></li>
+        <li><a href="https://www.taitotalo.com/fi/ravintolat/lounaslistat/talentti-viikon-lounaslista/">Talentti</a></li>
+        <!--<li><a href="http://www.ravintolafactory.com/lounasravintolat/ravintolat/helsinki-pitajanmaki/">Factory</a></li>-->
+        <!--<li><a href="">Se Luckiefunsin korvannu kelvoton sushipaikka???</a></li>-->
+        <li><a href="http://www.johtocafe.com/pitajanmaki/">Johtocafe</a></li>
+        <li><a href="https://www.facebook.com/valimonpizzeria/">Valimon pizza&kebab</a></li>
+        <!--<li><a href="http://www.westbeverly.fi/">Kalia kiinalainen</a></li>-->
+        <li>Subway</li>
+        <li>McDonalds</li>
+        <li><a href="http://www.haulerpizzeria.fi/">Hauler</a></li>
+        <!--<li><a href="http://herkkupippuri.com/">Herkkupippuri</a></li>-->
+        <li><a href="http://www.pizzamix.fi/">Pizza MIX</a></li>
+        
+      </ul>
+
+      <img class="hidden" src="random.gif"/>
+    </article>
+
+    <script>
+      const THURSDAY = 4
+      const restaurants = Array.from(document.querySelectorAll('li'))
+
+      document.querySelector('button').addEventListener('click', () => {
+        restaurants.forEach(restaurant => restaurant.classList.remove('random'))
+
+        if ((new Date()).getDay() === THURSDAY) {
+          // See also: https://xkcd.com/221/
+          const choice = document.querySelector('.nepal')
+          choice.classList.add('random')
+          document.querySelector('img').classList.remove('hidden')
+        } else {
+          const choice = restaurants[Math.floor(Math.random() * restaurants.length)]
+          choice.classList.add('random')
+          document.querySelector('img').classList.add('hidden')
+        }
+      })
+    </script>
+  </body>
+</html>
